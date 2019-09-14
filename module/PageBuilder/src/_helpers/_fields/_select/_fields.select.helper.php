@@ -46,7 +46,7 @@ class _SELECT
             'tempID'        => '',
             'name'          => isset($variables['name']) ? $variables['name'] : '',
             'machine_name'  => isset($variables['machine_name']) ? $variables['machine_name'] : '',
-            'object_values' => isset($variables['object_values']) ? _VALIDATE::is_json($variables['object_values']) ? json_decode($variables['object_values']) : $variables['object_values'] : '',
+            'object_values' => isset($variables['object_values']) ? _VALIDATE::is_json($variables['object_values']) ? str_replace("\r\n","&#x0a;",json_decode($variables['object_values'])) : $variables['object_values'] : '',
 
             'placeholder' => isset($variables['placeholder']) ? $variables['placeholder'] : '',
             'values'      => $values,
