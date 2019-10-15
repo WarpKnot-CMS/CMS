@@ -1,16 +1,12 @@
-var gulp = require('gulp'),
-    clean = require('gulp-clean'),
-    jshint = require('gulp-jshint'),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
-    imagemin = require('gulp-imagemin'),
-    sass = require('gulp-sass'),
-    minifyCss = require('gulp-minify-css'),
-    browsersync = require('browser-sync'),
-    reload = browsersync.reload,
-    debug = require('gulp-debug'),
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const browserSync = require('browser-sync').create();
+const jshint = require('gulp-jshint');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+const cssnano = require('gulp-cssnano');
 
-    bases = {
+let bases = {
         app: 'sources/',
         dist: '../dist/',
         fonts: 'fonts/',
@@ -40,73 +36,67 @@ var gulp = require('gulp'),
         extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
     };
 
-// Delete the dist directory
-gulp.task('clean', function () {
-    // gulp.src(bases.fonts)
-    //     .pipe(clean());
-    // gulp.src(bases.dist)
-    //     .pipe(clean());
-});
-
-
-// Copy fonts
-gulp.task('fonts', function () {
-    gulp.src(paths.fonts, {cwd: 'sources/**'})
-        .pipe(gulp.dest(bases.dist));
-});
-
-
-// Process scripts and concatenate them into one output file
-gulp.task('scripts', ['clean'], function () {
-    gulp.src(paths.scripts, {cwd: bases.app})
+// Custom js scripts minify
+gulp.task('scripts', function () {
+    return gulp.src(paths.scripts, {cwd: bases.app})
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(uglify().on('error', function (e) {
-            console.log(e);
         }))
         .pipe(concat('script.js'))
         .pipe(gulp.dest(bases.dist + 'scripts/'));
 });
 
-// Combine all external libraries
-gulp.task('scripts_lib', ['clean'], function () {
+// Js libraries combine
+gulp.task('scripts_lib', function () {
     // Concat lib scripts
-    gulp.src(paths.libs, {cwd: 'sources/**'})
-        .pipe(uglify({output: {max_line_len: 120000}}).on('error', function (e) {
-            console.log(e);
-        }))
+    return gulp.src(paths.libs, {cwd: 'sources/**'})
+        .pipe(uglify({output: {max_line_len: 120000}}))
         .pipe(concat('lib.js'))
         .pipe(gulp.dest(bases.dist + 'scripts/'));
 });
 
-// SCSS compile and minify
-gulp.task('styles', ['clean'], function () {
-    gulp.src(paths.styles, {cwd: bases.app})
-    // .pipe(debug({minimal:false}))
+// CSS Combine and minify
+gulp.task('styles', function () {
+    return gulp.src(paths.styles, {cwd: bases.app})
         .pipe(sass().on('error', sass.logError))
-        .pipe(minifyCss()) //minifies the CSS files
+        .pipe(cssnano({
+            discardComments: {removeAll: true}
+        }))
         .pipe(concat('main.css'))
-        .pipe(gulp.dest(bases.dist + 'styles/'))
-        .pipe(browsersync.reload({stream: true}));
+        .pipe(gulp.dest(bases.dist + 'styles/'));
 });
 
-// Imagemin images and ouput them in dist
-gulp.task('imagemin', ['clean'], function () {
-    gulp.src(paths.images, {cwd: bases.app})
-    // .pipe(imagemin()) // use it on live
+// Images Minify and copy
+gulp.task('imagemin', function () {
+    return gulp.src(paths.images, {cwd: bases.app})
         .pipe(gulp.dest(bases.dist + 'images/'));
 });
 
+// Fonts copy
+gulp.task('fonts', function () {
+    return gulp.src(paths.fonts, {cwd: 'sources/**'}).pipe(gulp.dest(bases.dist));
+});
 
-// Watch for changes
+// Gulp Watch Task
 gulp.task('watch', function () {
-    gulp.watch('../../../module/**/template/sources/**/*', ['scripts', 'styles', 'imagemin']);
-    gulp.watch('sources/**/*', ['scripts', 'styles', 'imagemin']);//, 'imagemin', 'fonts', '_views'
-    // gulp.watch('app/styles/**/*', ['styles']);
-    browsersync({
+    gulp.watch('../../../module/**/template/sources/**/*', gulp.series('scripts', 'styles', 'reload'));
+    gulp.watch('sources/**/*', gulp.series('scripts', 'styles', 'reload'));
+});
+
+// Gulp Build Task
+gulp.task('build', gulp.parallel('scripts', 'scripts_lib', 'styles', 'imagemin', 'fonts'));
+
+// Browser Sync
+gulp.task('browserSyncInit', function () {
+    browserSync.init({
         port: 3333
     });
 });
 
-// Define the default task as a sequence of the above tasks
-gulp.task('default', ['clean', 'scripts', 'scripts_lib', 'styles', 'fonts', 'imagemin']);//,'_views'
+gulp.task('reload', function (done) {
+    browserSync.reload();
+    done();
+});
+
+gulp.task('default', gulp.parallel('browserSyncInit', 'watch'));

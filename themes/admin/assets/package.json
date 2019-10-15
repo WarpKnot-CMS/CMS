@@ -9,23 +9,21 @@
   "author": "Marian-Alexandru Uta",
   "license": "ISC",
   "devDependencies": {
-    "bootstrap": "^4.2.1",
-    "browser-sync": "^2.26.3",
-    "gulp": "^3.9.0",
-    "gulp-clean": "^0.4.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^5.0.3",
-    "gulp-jshint": "^2.1.0",
-    "gulp-minify-css": "^1.2.4",
+    "browser-sync": "^2.26.5",
+    "gulp": "^4.0.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.1",
+    "tar": ">=4.4.2"
+  },
+  "dependencies": {
+    "blueimp-file-upload": "^9.28.0",
+    "bootstrap": "^4.2.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-jshint": "^2.1.0",
+    "gulp-uglify": "^3.0.2",
     "jquery": "^3.3.1",
     "jshint": "^2.9.7",
     "open-iconic": "^1.1.1",
     "popper.js": "^1.14.6"
-  },
-  "dependencies": {
-    "blueimp-file-upload": "^9.28.0",
-    "gulp-debug": "^4.0.0"
   }
 }
