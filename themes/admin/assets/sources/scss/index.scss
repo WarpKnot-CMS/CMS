@@ -11,7 +11,7 @@ $icon-font-path: '/themes/admin/dist/fonts/' !default;
 @import "../../node_modules/open-iconic/font/css/open-iconic-bootstrap.scss";
 
 // File Upload Import
-@import "../../node_modules/blueimp-file-upload/css/jquery.fileupload.css";
+@import "../../node_modules/blueimp-file-upload/css/jquery.fileupload";
 
 ////@import "_configs/reset";
 @import "_layout/main";
@@ -28,7 +28,3 @@ $icon-font-path: '/themes/admin/dist/fonts/' !default;
 .ql-showHtml:after {
   content: "[source]";
 }
-
-
-// Custom Modules SCSS
-//@import "../../../../../module/PageBuilder/template/assets/scss/page_builder";

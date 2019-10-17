@@ -174,7 +174,7 @@
          * On Image Save
          */
         $(document).on("click", $fileSelect, function () {
-            $this = $(this);
+            var $this = $(this);
             var
                 object = $this.attr("object"),
                 save_to = $this.attr("save_to"),
@@ -191,9 +191,11 @@
 
             if ($current.attr("gallery")) {
                 if (display_to) {
+                    var multipleGroup = $target.attr("group") ? $target.attr("group") : '';
+
                     $target.find(display_to).append('' +
                         '<div class="picture-select picture-preview-simple d-inline-block picture-object">' +
-                        '   <input type="hidden" class="form-control" id="gallery_picture[]" name="gallery_picture[]" value="' + $currentObject.attr("location") + '">' +
+                        '   <input type="hidden" class="form-control multiple gallery_picture_multiple" group="' + multipleGroup + '" unique_id="' + $(".gallery_picture_multiple").length + '" id="gallery_picture[]" name="gallery_picture[]" value="' + $currentObject.attr("location") + '">' +
                         '   <div class="clearGallery">x</div>' +
                         '   <div class="image-container">' +
                         '       <img src="' + $currentObject.find("img").attr("src") + '">' +
