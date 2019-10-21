@@ -6,7 +6,7 @@
 
     <title><?= isset($page_title) ? $page_title : '' ?></title>
     <meta name="description" content="<?= isset($page_description) ? $page_description : '' ?>">
-    <?= cssResourcesAdmin() ?>
+    <? cssResourcesAdmin() ?>
 </head>
 
 <body class="<?= (isset($_COOKIE['left-menu-show-hide']) ? 'left-menu-show-hide ' : '') ?>dashboard dashboard-<?= isset($menu) ? $menu : '' ?>">

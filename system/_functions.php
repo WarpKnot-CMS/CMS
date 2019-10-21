@@ -47,17 +47,14 @@ function jsResourcesAdmin()
 {
     global $_APP_CONFIG;
 
+    foreach ($_APP_CONFIG['_ADMIN_JS_RESOURCES'] as $RESOURCE):
+        echo '<script src="' . $RESOURCE . '"></script>';
+    endforeach;
+
     /**
      * Add extra resources to the admin js
      */
     _HOOK::execute('jsResourcesAdmin');
-
-    $resources = [];
-    foreach ($_APP_CONFIG['_ADMIN_JS_RESOURCES'] as $RESOURCE):
-        $resources[] = '<script src="' . $RESOURCE . '"></script>';
-    endforeach;
-
-    return implode("", $resources);
 }
 
 /**
@@ -67,17 +64,14 @@ function cssResourcesAdmin()
 {
     global $_APP_CONFIG;
 
+    foreach ($_APP_CONFIG['_ADMIN_CSS_RESOURCES'] as $RESOURCE):
+        echo '<link href="' . $RESOURCE . '" rel="stylesheet">';
+    endforeach;
+
     /**
      * Add extra resources to the admin css
      */
     _HOOK::execute('cssResourcesAdmin');
-
-    $resources = [];
-    foreach ($_APP_CONFIG['_ADMIN_CSS_RESOURCES'] as $RESOURCE):
-        $resources[] = '<link href="' . $RESOURCE . '" rel="stylesheet">';
-    endforeach;
-
-    return implode("", $resources);
 }
 
 /**
