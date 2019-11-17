@@ -47,8 +47,8 @@ class FilesManagement extends _INIT
      */
     public static function FilesManagement_admin_dashboard_index_bottom($object = [])
     {
-        $objects              = new _DB\FilesManagement();
-        $objectsList          = $objects->search(
+        $objects     = new _DB\FilesManagement();
+        $objectsList = $objects->search(
             [
                 'fields' => [],
                 'sort'   => [
@@ -263,11 +263,11 @@ class FilesManagement extends _INIT
                 exit();
             else:
                 // Notify editor that the upload failed
-                header("HTTP/1.1 500 Server Error");
+                header("HTTP/1.1 500 File Upload Filed");
             endif;
         else:
             // Notify editor that the upload failed
-            header("HTTP/1.1 500 Server Error");
+            header("HTTP/1.1 500 File Error");
         endif;
     }
 
@@ -403,15 +403,36 @@ class FilesManagement extends _INIT
         $_GET_VARS = _REQUEST::_GET_VARIABLES();
         $group     = isset($_GET_VARS['group']) ? $_GET_VARS['group'] : 'images';
 
-        $file      = new _DB\FilesManagement();
+        $file = new _DB\FilesManagement();
+
+
+        if (in_array('administrator', _ACCOUNT::_getRoles())):
+            $fields = [
+                'filegroup' => [
+                    'type'  => '=',
+                    'value' => $group
+                ]
+            ];
+        else:
+            $fields = [
+                'filegroup' => [
+                    'type'  => '=',
+                    'value' => $group
+                ],
+                'condition' => [
+                    'value' => 'and'
+                ],
+                'uid'       => [
+                    'type'  => '=',
+                    'value' => _ACCOUNT::_getSession('current_user')['uid']
+                ]
+            ];
+        endif;
+
+
         $files     = $file->search(
             [
-                'fields' => [
-                    'filegroup' => [
-                        'type'  => '=',
-                        'value' => $group
-                    ]
-                ],
+                'fields' => $fields,
                 'sort'   => [
                     'fid' => 'desc'
                 ]
@@ -530,12 +551,15 @@ class FilesManagement extends _INIT
                 case 'scale':
                     $image->scale($object['scale']);
                     break;
+                case 'resize':
+                    $image->resize($object['width'], $object['height'], (isset($object['allow_enlarge']) ? $object['allow_enlarge'] : false));
+                    break;
             endswitch;
             $image->save($_CACHE_LOCATION . $object['directory'] . DIRECTORY_SEPARATOR . $file);
         endif;
         $src = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . self::$imageCacheFolder . $object['directory'] . DIRECTORY_SEPARATOR . $file;
         if (isset($object['img_tag']) && $object['img_tag']):
-            return '<img title="' . $object['title'] . '" src="' . $src . '"/>';
+            return '<img id=' . (isset($object['id']) ? $object['id'] : '') . ' title="' . $object['title'] . '" src="' . $src . '"/>';
         else:
             return $src;
         endif;

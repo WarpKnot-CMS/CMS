@@ -22,7 +22,7 @@ return [
             'post'
         ],
         'required_roles' => [
-            'administrator'
+            'authenticated'
         ],
         'redirect_page'  => '',
         'local_template' => false
@@ -39,7 +39,7 @@ return [
             'post'
         ],
         'required_roles' => [
-            'administrator'
+            'authenticated'
         ],
         'redirect_page'  => '',
         'local_template' => false
@@ -53,7 +53,7 @@ return [
             'get'
         ],
         'required_roles' => [
-            'administrator'
+            'authenticated'
         ],
         'redirect_page'  => '',
         'local_template' => false
