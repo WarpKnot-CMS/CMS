@@ -17,18 +17,28 @@ return [
                 'FilesManagement'
             ],
             'bottom' => [
-                'User' => [
+                'User'            => [
                     'limit' => 10,
                 ],
-                'Pages' => [
+                'Pages'           => [
                     'limit' => 10
                 ],
-                'Blog' => [
+                'Blog'            => [
                     'limit' => 10
                 ],
                 'FilesManagement' => [
                     'limit' => 10
                 ]
+            ]
+        ]
+    ],
+    'user_dashboard'  => [
+        'widgets' => [
+            'top'    => [
+
+            ],
+            'bottom' => [
+
             ]
         ]
     ],
