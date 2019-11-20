@@ -1,4 +1,5 @@
-(function ($) {
+$(function () {
+    "use strict";
     $.fn.pageBuilder = function (options) {
 
         /**

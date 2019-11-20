@@ -1,4 +1,5 @@
-(function ($) {
+$(function () {
+    "use strict";
     $.fn.machineName = function (options) {
         function string_to_machine(str) {
             str = str.replace(/^\s+|\s+$/g, ''); // trim

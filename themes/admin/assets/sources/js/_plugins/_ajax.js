@@ -1,5 +1,6 @@
 /* eslint no-eval: 0 */
-(function ($) {
+$(function () {
+    "use strict";
     $.fn.ajaxSubmit = function (options) {
         function getCookie(name) {
             var cookieValue = null;
