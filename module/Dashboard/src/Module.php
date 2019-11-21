@@ -8,6 +8,7 @@ namespace _MODULE;
 use _MODULE\User\_ACCOUNT;
 use _WKNT\_INIT;
 use _WKNT\_REQUEST;
+use _WKNT\_ROUTE;
 use function json_encode;
 
 /**
@@ -39,6 +40,10 @@ class Dashboard extends _INIT
     public static function getUserIndexAction()
     {
         global $_TRANSLATION;
+
+        if (_ACCOUNT::_isAdmin()):
+            _ROUTE::_REDIRECT('admin');
+        endif;
 
         self::$_VIEW->menu             = 'dashboard';
         self::$_VIEW->page_title       = $_TRANSLATION['dashboard']['index']['seo_title'];
