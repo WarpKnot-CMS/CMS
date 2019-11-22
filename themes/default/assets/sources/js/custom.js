@@ -1,5 +1,6 @@
 $(function () {
     "use strict";
+
     /**
      * Ajax submit
      */
@@ -16,10 +17,6 @@ $(function () {
     $(document).ready(function () {
         var sliderInit = [];
         $('.slider-init').each(function (index, slider) {
-
-            console.log(("#" + $(slider).attr("id") + ' .swiper-pagination'));
-
-
             sliderInit['_slider_' + $(slider).attr("id")] = new Swiper("#" + $(slider).attr("id"), {
                 slidesPerView: $(slider).attr("data-slidesPerView") ? parseInt($(slider).attr("data-slidesPerView")) : 1,
                 loop: !!$(slider).attr("data-loop"),
