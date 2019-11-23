@@ -29,11 +29,30 @@ class _REQUEST extends _INIT
     }
 
     /**
+     * Alter the REQUEST_URI in order to remove the subdomain from the list
+     *
+     * @return mixed
+     */
+    static function _REQUEST_URI()
+    {
+        global $_APP_CONFIG;
+        if (isset($_APP_CONFIG['_SUBDIRECTORY'])):
+            return str_replace(
+                $_APP_CONFIG['_SUBDIRECTORY'],
+                '',
+                $_SERVER['REQUEST_URI']
+            );
+        else:
+            return $_SERVER['REQUEST_URI'];
+        endif;
+    }
+
+    /**
      * Return URI
      */
     static function _URI()
     {
-        $_REQUEST_URI = _SANITIZE::input($_SERVER['REQUEST_URI']);
+        $_REQUEST_URI = _SANITIZE::input(self::_REQUEST_URI());
 
         return [
             "_REQUEST" => $_REQUEST_URI,
@@ -160,9 +179,9 @@ class _REQUEST extends _INIT
                                             "_",
                                             "-"
                                         ], [
-                                            " ",
-                                            " "
-                                        ], ucfirst($key)) . " field can't be empty." . '</div>';
+                                        " ",
+                                        " "
+                                    ], ucfirst($key)) . " field can't be empty." . '</div>';
                             }
                             break;
                         case 'email':
@@ -177,9 +196,9 @@ class _REQUEST extends _INIT
                                             "_",
                                             "-"
                                         ], [
-                                            " ",
-                                            " "
-                                        ], ucfirst($key)) . " field has an invalid value." . '</div>';
+                                        " ",
+                                        " "
+                                    ], ucfirst($key)) . " field has an invalid value." . '</div>';
                             }
                             break;
                     endswitch;
@@ -193,9 +212,9 @@ class _REQUEST extends _INIT
                                             "_",
                                             "-"
                                         ], [
-                                            " ",
-                                            " "
-                                        ], ucfirst($key)) . " field can't be empty." . '</div>';
+                                        " ",
+                                        " "
+                                    ], ucfirst($key)) . " field can't be empty." . '</div>';
                             }
                             break;
                         case 'email':
@@ -213,9 +232,9 @@ class _REQUEST extends _INIT
                                                 "_",
                                                 "-"
                                             ], [
-                                                " ",
-                                                " "
-                                            ], ucfirst($key)) . " field has an invalid value." . '</div>';
+                                            " ",
+                                            " "
+                                        ], ucfirst($key)) . " field has an invalid value." . '</div>';
                                 }
                                 break;
                             endif;
