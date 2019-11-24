@@ -1,7 +1,7 @@
 header {
   box-shadow: 0 2px 4px 0 $web_color_7;
   @include media-breakpoint-down(sm) {
-    padding: 10px 0 10px 0;
+    padding: 1.5px 0;
   }
 
   .navbar {
@@ -145,8 +145,11 @@ header {
     transition: .5s ease-in-out;
     cursor: pointer;
     float: left;
-    top: 0;
+    top: 3px;
     z-index: 100;
+    @include media-breakpoint-down(sm) {
+      width: 25px;
+    }
     &:focus,&:active {
       outline: none;
       -webkit-box-shadow: none;
