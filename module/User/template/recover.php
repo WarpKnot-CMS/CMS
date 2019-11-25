@@ -12,9 +12,9 @@
                           method="post" class="form-post login-form text-left">
 
                         <div class="form-group">
+                            <div class="errors email_errors"></div>
                             <input type="text" name="email" class="form-control" id="email">
                             <label class="control-label" for="email">Email</label>
-                            <div class="errors email_errors"></div>
                         </div>
 
                         <div class="grid-x grid-margin-x align-center">
@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <div class="d-block d-md-inline-block mb-2">
-                                <button class="btn btn-success transparent reverse" type="submit">
+                                <button class="btn btn-primary transparent reverse" type="submit">
                                     Reset Password
                                 </button>
                             </div>

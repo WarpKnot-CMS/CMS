@@ -1,4 +1,8 @@
-<!doctype html>
+<?php
+
+use _MODULE\User\_ACCOUNT;
+
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -10,6 +14,22 @@
     <?= cssResources() ?>
 </head>
 <body>
+<div id="cookie-notice" class="cookie-notice" style="display: none">
+    <div class="container pt-0 pb-0">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="cookie-notice-text">
+                    <span class="cookie-notice-info">
+                        By using this website you agree with our <a href="<?= webLink('privacy-policy') ?>">cookie policy</a>
+                    </span>
+                    <button class="cookie-policy-agree btn btn-cookie" id="cookie-agree">
+                        <div>I agree</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <header>
     <div class="container">
         <nav class="navbar navbar-expand-md navbar-light">
@@ -29,26 +49,29 @@
 
             <div class="collapse navbar-collapse" id="main-menu">
                 <ul class="navbar-nav ml-auto justify-content-center align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link nav-hover<?= currentPage('about') ? ' current' : '' ?>" href="#">About Us</a>
-                    </li>
+
+                    <? if (_ACCOUNT::_loggedIn('user')): ?>
+                        <li class="nav-item">
+                            <a class="nav-link nav-hover<?= currentPage('dashboard') ? ' current' : '' ?>"
+                               href="<?= webLink('dashboard') ?>">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-hover<?= currentPage('user/logout') ? ' current' : '' ?>"
+                               href="<?= webLink('user/logout') ?>">Log Out</a>
+                        </li>
+                    <? else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link nav-hover<?= currentPage('user/login') ? ' current' : '' ?>"
+                               href="<?= webLink('user/login') ?>">Login</a>
+                        </li>
+                    <? endif ?>
 
                     <li class="nav-item">
-                        <a class="nav-link nav-hover<?= currentPage('blog') ? ' current' : '' ?>" href="#">Blog</a>
+                        <a class="nav-link nav-hover<?= currentPage('blog') ? ' current' : '' ?>"
+                           href="<?= webLink('blog') ?>">Blog</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link nav-hover<?= currentPage('gallery') ? ' current' : '' ?>"
-                           href="#">Gallery</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link nav-hover<?= currentPage('contact') ? ' current' : '' ?>"
-                           href="#">Contact</a>
-                    </li>
-                    <li class="nav-item outline">
-                        <a class="nav-link btn" href="#">Contact</a>
-                    </li>
                     <li class="nav-item"><?= selfRender('Blog', 'public/search-form.php') ?></li>
                 </ul>
             </div>

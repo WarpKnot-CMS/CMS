@@ -12,21 +12,21 @@
                           method="post" class="form-post login-form text-left">
 
                         <div class="form-group">
+                            <div class="errors username_errors"></div>
                             <input type="text" name="username" class="form-control" id="username">
                             <label class="control-label" for="username">Username</label>
-                            <div class="errors username_errors"></div>
                         </div>
 
                         <div class="form-group">
+                            <div class="errors email_errors"></div>
                             <input type="text" name="email" class="form-control" id="email">
                             <label class="control-label" for="email">Email</label>
-                            <div class="errors email_errors"></div>
                         </div>
 
                         <div class="form-group">
+                            <div class="errors password_errors"></div>
                             <input type="password" name="password" class="form-control" id="password">
                             <label class="control-label" for="password">Password</label>
-                            <div class="errors password_errors"></div>
                         </div>
 
                         <div class="grid-x grid-margin-x align-center">
@@ -37,7 +37,7 @@
 
                         <div class="form-group">
                             <div class="d-block d-md-inline-block mb-2">
-                                <button class="btn btn-success transparent reverse" type="submit">Register</button>
+                                <button class="btn btn-primary transparent reverse" type="submit">Register</button>
                             </div>
                         </div>
 

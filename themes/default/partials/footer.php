@@ -5,7 +5,7 @@
             <div class="col-12 col-sm-6 col-xs-6 col-md-6 col-lg-4">
                 <div class="footer-details">
                     <div class="footer-details__headline">
-                        Lorem ipsum dolor sit amet
+                        About us
                     </div>
                     <div class="footer-details__text">
                         Ut ac turpis enim. Sed placerat imperdiet metus nec placerat. Fusce a nibh ut purus scelerisque
@@ -20,7 +20,7 @@
             <div class="col-12 col-sm-6 col-xs-6 col-md-6 offset-lg-1 col-lg-3">
                 <div class="footer-details">
                     <div class="footer-details__headline">
-                        Quisque vel vehicula nulla
+                        Sitemap
                     </div>
                     <div class="footer-details__links">
                         <ul>
@@ -53,8 +53,8 @@
                         </a>
                     </div>
                     <div class="mt-4">
-                        <a href="/blog" target="_self" class="btn btn-success transparent reverse">
-                            Quisque nec ex nisl.
+                        <a href="<?= webLink('blog') ?>" target="_self" class="btn btn-success transparent reverse">
+                            Blog
                         </a>
                     </div>
                 </div>

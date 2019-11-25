@@ -29,7 +29,6 @@
          * Title to slug
          */
         // See if there is an object id on the page
-
         if (parseFloat($(".object_id").length) > 0) {
             $("." + settings.title).each(function (i, obj) {
                 var field = $("#" + $(obj).attr("id")),

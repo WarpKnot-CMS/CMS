@@ -18,12 +18,12 @@ class _SANITIZE extends _INIT
                     if (is_array($VALUE)) {
                         $new_obj[$key] = self::input($VALUE);
                     } else {
-                        $new_obj[$key] = strip_tags($VALUE);
+                        $new_obj[$key] = self::sanitize_xss($VALUE);
                     }
                 endforeach;
             endif;
         else:
-            $new_obj = strip_tags($obj);
+            $new_obj = self::sanitize_xss($obj);
         endif;
 
         return !empty($new_obj) ? $new_obj : '';
@@ -537,5 +537,13 @@ class _SANITIZE extends _INIT
         return true;
     }
 
+    /**
+     * @param $string
+     * @return string
+     */
+    public static function sanitize_xss($string)
+    {
+        return htmlspecialchars(strip_tags($string));
+    }
 
 }

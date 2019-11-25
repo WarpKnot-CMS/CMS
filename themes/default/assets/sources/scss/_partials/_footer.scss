@@ -8,8 +8,8 @@ footer {
     font-size: 15px;
 
     &:hover {
-      text-decoration: none;
-      color: $web_color_9;
+      text-decoration: underline;
+      color: $white;
     }
   }
 
@@ -39,13 +39,16 @@ footer {
         color: $web_color_4;
       }
     }
+
     .footer-details__icons {
       a {
         display: inline-block;
         margin-right: 10px;
+
         &:last-child {
           margin-right: 0;
         }
+
         img {
           max-width: 25px;
         }

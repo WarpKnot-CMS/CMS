@@ -7,7 +7,7 @@
                 </h5>
                 <p>Click on this button to visit your profile and change your password.</p>
                 <a href="<?= (isset($_APP_CONFIG['_DOMAIN_ROOT']) ? $_APP_CONFIG['_DOMAIN_ROOT'] : '') ?>user"
-                   class="btn btn-success transparent reverse">
+                   class="btn btn-primary transparent reverse">
                     Password Update
                 </a>
             </div>

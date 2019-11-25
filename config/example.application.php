@@ -74,6 +74,9 @@ return [
     // Website Url
     '_DOMAIN'              => $_SERVER['HTTP_HOST'],
 
+    // Subdirectory
+    '_SUBDIRECTORY'        => '',
+
     // Domain Root
     '_DOMAIN_ROOT'         => (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . DIRECTORY_SEPARATOR,
 

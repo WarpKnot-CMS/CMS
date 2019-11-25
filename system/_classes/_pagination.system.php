@@ -39,7 +39,9 @@ class _PAGINATION extends _INIT
         $ITEMS_PAGE     = $_DATA['_ITEMS_PER_PAGE'];
         $_PAGE_LOCATION = $_API_CONFIG['_DOMAIN_ROOT'] . $_DATA['_PAGE_LINK'] . $_APPEND;
         $_HASHTAG       = isset($_DATA['_HASHTAG']) ? $_DATA['_HASHTAG'] . $_APPEND : '';
-        $_CFG           = isset($_DATA['_CFG']) ? $_DATA['_CFG'] :
+        $_CFG           = isset($_DATA['_CFG'])
+            ? $_DATA['_CFG']
+            :
             [
                 '_PRENAME'  => '&#8249;',
                 '_HEADNAME' => '&#171;',
@@ -136,10 +138,10 @@ class _PAGINATION extends _INIT
      */
     public static function _CURRENT_PAGE()
     {
-        if (strpos($_SERVER['REQUEST_URI'], '?p=') !== false) :
-            return (count(explode("?p=", $_SERVER['REQUEST_URI'])) == 1) ? '1' : explode("?p=", $_SERVER['REQUEST_URI'])['1'];
+        if (strpos(_REQUEST::_REQUEST_URI(), '?p=') !== false) :
+            return (count(explode("?p=", _REQUEST::_REQUEST_URI())) == 1) ? '1' : explode("?p=", _REQUEST::_REQUEST_URI())['1'];
         else:
-            return (count(explode("&p=", $_SERVER['REQUEST_URI'])) == 1) ? '1' : explode("&p=", $_SERVER['REQUEST_URI'])['1'];
+            return (count(explode("&p=", _REQUEST::_REQUEST_URI())) == 1) ? '1' : explode("&p=", _REQUEST::_REQUEST_URI())['1'];
         endif;
     }
 
