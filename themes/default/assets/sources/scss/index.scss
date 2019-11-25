@@ -5,7 +5,7 @@
 // ########## Bootstrap Import ########## //
 $bootstrap-sass-asset-helper: true;
 @import "../../node_modules/bootstrap/scss/bootstrap";
-@import "../../node_modules/swiper/dist/css/swiper.css";
+@import "../../node_modules/swiper/dist/css/swiper";
 
 // Layout Import
 @import "_layout/main";

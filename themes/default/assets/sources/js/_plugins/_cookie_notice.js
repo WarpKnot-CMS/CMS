@@ -49,7 +49,6 @@
              * Validate the cookie
              */
             if ($cookieNotice.length) {
-                console.log(getCookie($cookieNotice));
                 if (!getCookie($cookieNotice)) {
                     $cookieNotice.slideDown("slow");
                 }
@@ -63,5 +62,4 @@
     };
 }(jQuery));
 
-console.log('cookie?');
 $(document).cookieNotice();
