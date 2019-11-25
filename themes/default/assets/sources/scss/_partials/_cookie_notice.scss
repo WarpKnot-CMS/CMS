@@ -1,0 +1,33 @@
+.cookie-notice {
+  color: $white;
+  background: $web_color_4;
+  text-align: center;
+  padding: 10px 0;
+
+  .cookie-notice-info {
+    margin: 5px 0;
+  }
+
+  a {
+    color: $white;
+    text-decoration: underline;
+    margin-right: 20px;
+  }
+
+  .btn-cookie {
+    color: $white;
+    border-color: $white;
+    padding: 2.5px 10px;
+    margin: 5px 0;
+    min-width: auto;
+    @include media-breakpoint-down(sm) {
+      display: block;
+      margin: 10px auto 5px auto;
+    }
+
+    &:hover {
+      background: $white;
+      color: $web_color_4;
+    }
+  }
+}

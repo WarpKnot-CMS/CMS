@@ -14,6 +14,22 @@ use _MODULE\User\_ACCOUNT;
     <?= cssResources() ?>
 </head>
 <body>
+<div id="cookie-notice" class="cookie-notice" style="display: none">
+    <div class="container pt-0 pb-0">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="cookie-notice-text">
+                    <span class="cookie-notice-info">
+                        By using this website you agree with our <a href="<?= webLink('privacy-policy') ?>">cookie policy</a>
+                    </span>
+                    <button class="cookie-policy-agree btn btn-cookie" id="cookie-agree">
+                        <div>I agree</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <header>
     <div class="container">
         <nav class="navbar navbar-expand-md navbar-light">

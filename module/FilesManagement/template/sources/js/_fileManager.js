@@ -105,7 +105,7 @@ $(function () {
 
                     var parent = $(this).attr("id");
                     if ($current.attr("group") === 'images') {
-                        $fileManagerModal.find("#files-list .files-container").append('<div class="col-auto">' +
+                        $fileManagerModal.find("#files-list .files-container").prepend('<div class="col-auto">' +
                             '<div class="item" object_name="' + data.result.title + '" location="' + data.result.src_location + '">' +
                             '<div class="image">' +
                             '<img src="' + data.result.location + '"/>' +
@@ -114,7 +114,7 @@ $(function () {
                             '</div>' +
                             '</div>');
                     } else {
-                        $fileManagerModal.find("#files-list .files-container").append('<div class="col-auto">' +
+                        $fileManagerModal.find("#files-list .files-container").prepend('<div class="col-auto">' +
                             '<div class="item" object_name="' + data.result.title + '" location="' + data.result.src_location + '">' +
                             '<div class="file">' +
                             '<div><img src="' + data.result.extension_image + '"/><div class="title">' + data.result.title + '</div></div>' +
