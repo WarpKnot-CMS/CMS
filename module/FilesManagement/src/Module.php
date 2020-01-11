@@ -227,13 +227,14 @@ class FilesManagement extends _INIT
                 /**
                  * Save the file location
                  */
+                $used_by             = isset($_GET_VARS['location']) ? $_GET_VARS['location'] : '';
                 $file                = new \_MODULE\_DB\FilesManagement();
                 $file->uid           = $uid;
                 $file->filename      = $fileName;
                 $file->filegroup     = 'images';
                 $file->filetype      = isset($temp['type'][0]) ? $temp['type'][0] : 'blank';
                 $file->location      = self::$imageFolder . $fileName;
-                $file->used_by       = isset($_GET_VARS['location']) ? $_GET_VARS['location'] : '';
+                $file->used_by       = $used_by;
                 $file->uploaded_date = _TIME::_DATE_TIME()['_NOW'];
                 $file->create();
 
@@ -244,10 +245,14 @@ class FilesManagement extends _INIT
                 $image->resizeToBestFit(300, 230);
                 $image->save($_CACHE_LOCATION . $fileName);
 
-                if (file_exists($_CACHE_LOCATION . $fileName)):
-                    $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . self::$imageCacheFolder . $fileName;
+                if ($used_by == 'editor'):
+                    $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . self::$imageFolder . $fileName;
                 else:
-                    $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . $fileName;
+                    if (file_exists($_CACHE_LOCATION . $fileName)):
+                        $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . self::$imageCacheFolder . $fileName;
+                    else:
+                        $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . self::$imageFolder . $fileName;
+                    endif;
                 endif;
 
                 // Respond to the successful upload with JSON.
