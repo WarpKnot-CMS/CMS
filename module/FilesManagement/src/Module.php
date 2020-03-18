@@ -407,6 +407,7 @@ class FilesManagement extends _INIT
 
         $_GET_VARS = _REQUEST::_GET_VARIABLES();
         $group     = isset($_GET_VARS['group']) ? $_GET_VARS['group'] : 'images';
+        $request   = isset($_GET_VARS['request']) ? $_GET_VARS['request'] : '';
 
         $file = new _DB\FilesManagement();
 
@@ -448,14 +449,18 @@ class FilesManagement extends _INIT
         foreach ($files as $file):
             if ($group === 'images'):
                 if (file_exists($_CACHE_LOCATION . $file['filename'])):
-                    $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . self::$imageCacheFolder . $file['filename'];
+                    if($request=='tinymce'):
+                        $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . self::$imageFolder . $file['filename'];
+                    else:
+                        $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . self::$imageCacheFolder . $file['filename'];
+                    endif;
                 /**
                  * Generate the caching file
                  */
                 else:
                     if (file_exists($__DIRECTORIES['_UPLOADS'] . $file['location'])):
                         $image = new ImageResize($__DIRECTORIES['_UPLOADS'] . $file['location']);
-                        $image->resize(300, 230, true);
+                        $image->resize(300, 230, false);
                         $image->save($_CACHE_LOCATION . $file['filename']);
                     endif;
                     $imageSrc = $_APP_CONFIG['_DOMAIN_ROOT'] . 'uploads' . DIRECTORY_SEPARATOR . $file['location'];

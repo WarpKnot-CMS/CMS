@@ -29,7 +29,7 @@ $(function () {
 
                 images_upload_url: window.location.protocol + '//' + window.location.hostname + '/' + 'filesmanagement/upload/images?location=editor',
                 images_upload_base_path: '',
-                image_list: window.location.protocol + '//' + window.location.hostname + '/' + 'filesmanagement/load',
+                image_list: window.location.protocol + '//' + window.location.hostname + '/' + 'filesmanagement/load?request=tinymce',
                 automatic_uploads: false,
                 relative_urls: false,
                 remove_script_host: false,
