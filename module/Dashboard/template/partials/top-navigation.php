@@ -15,7 +15,14 @@ use _MODULE\Dashboard;
             </div>
         </div>
     </div>
-    <div class="top-bar-item top-bar-item-right px-0">
+    <div class="top-bar-item top-bar-item-right px-0 d-flex">
+        <div>
+            <a target="_blank" href="<?= (isset($_APP_CONFIG['_DOMAIN_ROOT']) ? $_APP_CONFIG['_DOMAIN_ROOT'] : '') ?>"
+               class="profile-action text-decoration-none">
+                <span class="oi oi-home"></span>
+            </a>
+        </div>
+
         <div class="dropdown">
             <div class="profile-action" id="dropdownMenuOffset"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="oi oi-person"></span>

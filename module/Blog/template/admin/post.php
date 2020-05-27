@@ -180,7 +180,7 @@ use _MODULE\PageBuilder;
 
 
                                     <div class="col-sm-12 col-md-12 col-lg-12 order-5 order-lg-3">
-                                        <div class="form-group">
+                                        <div>
                                             <? if (empty($categories)): ?>
                                                 <a class="btn custom-btn btn-info mt-2 d-inline" target="_blank"
                                                    href="<?= (isset($_APP_CONFIG['_DOMAIN_ROOT']) ? $_APP_CONFIG['_DOMAIN_ROOT'] : '') ?>admin/blog/categories/add">New
